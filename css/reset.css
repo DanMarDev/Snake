@@ -1,0 +1,9 @@
+/* Reset margins and paddings for basic HTML elements */
+body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, address, 
+div, span, img, strong, em, ol, ul, li, dl, dt, dd, table, 
+tr, th, td, form, fieldset, legend, input, textarea, button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
