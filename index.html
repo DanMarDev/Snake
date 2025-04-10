@@ -10,8 +10,36 @@
 </head>
 <body>
     <h1>Welcome to Snake!</h1>
+    <div class ="instructions">
+        <p>Use the arrow keys to control the snake.</p>
+        <p>Eat the food to grow the snake.</p>
+        <p>Don't run into the walls or yourself!</p>
+    </div>
+    <div class = "settings">
+        <button id="startButton" onclick="startGame()">Start</button>
+        <button id="stopButton" class="hidden" onclick="stopGame()">Stop</button>
+        <button id="resumeButton" class="hidden" onclick="resumeGame()">Resume</button>
+        <button id="resetButton" onclick="reset()">Reset</button>
+    </div>
+    <div class="instructions">
+        <div id="score"></p>
+    </div>
     <div class="canvas-container">
         <canvas id="gameCanvas" width="600" height="600"></canvas>
+    </div>
+    <div class="settings">
+        <label for="speed">Speed:</label>
+        <input type="range" id="speed" min="100" max="300" value="150" step="1">
+        <label for="color">Snake Color:</label>
+        <input type="color" id="color" value="green">
+        <label for="bgColor">Background Color:</label>
+        <input type="color" id="bgColor" value="lightblue">
+    </div>
+    <div class ="instructions">
+        <p>If you change any settings, reset to see changes.</p>
+        <p>Use the sliders to adjust the speed of the snake.</p>
+        <p>Click on the color boxes to change the snake and background colors.</p>
+        <p>Click "Start" to begin the game.</p>
     </div>
     <div id ="modalOverlay" class="hidden">
         <div id="customAlert" class="hidden">
@@ -19,5 +47,4 @@
             <button id="alertButton" onclick=hideAlert()>OK</button>
         </div>
     </div>
-    
 </body>

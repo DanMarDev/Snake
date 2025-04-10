@@ -1,11 +1,12 @@
 SNAKE_INIT_SIZE = 1;
-SNAKE_INIT_SPEED = 5;
+SNAKE_INIT_SPEED = 150;  // Speed in milliseconds
 SNAKE_INIT_DIRECTION = "right";
 SNAKE_INIT_COLOR = "green";
 SNAKE_INIT_BODY = [{ x: 0, y: 0 }];
 FOOD = { x: 0, y: 0 };
 CANVAS_WIDTH = 600;
 CANVAS_HEIGHT = 600;
+CANVAS_BACKGROUND_COLOR = "lightblue";
 gameRunning = true;
 
 (function() {
@@ -15,10 +16,7 @@ gameRunning = true;
         canvas.width = 600;
         canvas.height = 600;
         document.addEventListener("keydown", handleKeyPress, false);
-        initSnakeGame();
-        FOOD = generateFoodPosition();
-        placeFood(canvas.getContext("2d"), FOOD);
-        gameLoop();
+        initGame();
     };
 
     // Stop the game when the window is closed
@@ -31,6 +29,7 @@ gameRunning = true;
 // This function starts the game loop and initializes the game
 function gameLoop() {
     if (!gameRunning) return;
+
     
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
@@ -39,7 +38,7 @@ function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Fill the canvas with a light blue color
-    ctx.fillStyle = "lightblue";
+    ctx.fillStyle = CANVAS_BACKGROUND_COLOR;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Draw the snake on the canvas
@@ -57,7 +56,7 @@ function gameLoop() {
         // alert("Game Over!"); // Show game over alert
     }
 
-    setTimeout(gameLoop, 600 / SNAKE_INIT_SPEED); // Control the speed of the game
+    setTimeout(gameLoop, SNAKE_INIT_SPEED); // Control the speed of the game
 
 }
 
@@ -69,6 +68,8 @@ function isOnFood(snakeBody, foodPosition) {
 
 // This function grows the snake when it eats food
 function growSnake(snakeBody) {
+    SNAKE_INIT_SIZE++;
+    displayScore();
     const tail = snakeBody[snakeBody.length - 1];
     snakeBody.push({ x: tail.x, y: tail.y });
 }
@@ -117,6 +118,11 @@ function checkCollision(snakeBody, ctx) {
 // This function handles keyboard input for controlling the snake
 function handleKeyPress(event) {
     const key = event.key.toLowerCase();
+
+    if (key === 'arrowup' || key === 'arrowdown' || key === 'arrowleft' || key === 'arrowright') {
+        event.preventDefault(); // Prevent default scrolling behavior
+    }
+
     if (key === "arrowup") {
         SNAKE_INIT_DIRECTION = "up";
     } else if (key === "arrowdown") {
@@ -167,13 +173,30 @@ function moveSnake(snakeBody, direction) {
 }
 
 // This function initializes the snake game with default values
-function initSnakeGame() {
-    // Set the initial size of the snake
-    let snakeSize = SNAKE_INIT_SIZE;
-    let snakeSpeed = SNAKE_INIT_SPEED;
-    let snakeDirection = SNAKE_INIT_DIRECTION;
-    let snakeColor = SNAKE_INIT_COLOR;
-    let snakeBody = SNAKE_INIT_BODY;
+function initGame() {
+
+    initalizeDefaultSettings
+
+    if (detectAndSetCustomSettings()) {
+        SNAKE_INIT_SPEED = parseInt(document.getElementById("speed").value);
+        SNAKE_INIT_COLOR = document.getElementById("color").value;
+        CANVAS_BACKGROUND_COLOR = document.getElementById("bgColor").value;
+    }
+
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = CANVAS_HEIGHT;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    SNAKE_INIT_SIZE = 1;
+    SNAKE_INIT_DIRECTION = "right";
+    SNAKE_INIT_BODY = [{ x: 0, y: 0 }];
+    FOOD = generateFoodPosition();
+    placeFood(ctx, FOOD);
+    drawSnake(ctx, SNAKE_INIT_BODY, SNAKE_INIT_COLOR);
+    SCORE = 1;
+    displayScore();
 }
 
 // This function draws the snake on the canvas
@@ -184,11 +207,29 @@ function drawSnake(ctx, snakeBody, snakeColor) {
     }
 }
 
-function resetGame() {
-    SNAKE_INIT_SIZE = 1;
-    SNAKE_INIT_SPEED = 5;
-    SNAKE_INIT_DIRECTION = "right";
-    SNAKE_INIT_COLOR = "green";
-    SNAKE_INIT_BODY = [{ x: 0, y: 0 }];
-    gameRunning = true;
+function detectAndSetCustomSettings() {
+    custom = false;
+    let customSpeed = document.getElementById("speed").value;
+    let customColor = document.getElementById("color").value;
+    let customBgColor = document.getElementById("bgColor").value;
+
+    if (customSpeed !== SNAKE_INIT_SPEED) {
+        SNAKE_INIT_SPEED = parseInt(customSpeed);
+        custom = true;
+    }
+    if (customColor !== SNAKE_INIT_COLOR) {
+        SNAKE_INIT_COLOR = customColor;
+        custom = true;
+    }
+    if (customBgColor !== CANVAS_BACKGROUND_COLOR) {
+        CANVAS_BACKGROUND_COLOR = customBgColor;
+        custom = true;
+    }
+    return custom;
+}
+
+function initalizeDefaultSettings() {
+    document.getElementById("speed").value = SNAKE_INIT_SPEED;
+    document.getElementById("color").value = SNAKE_INIT_COLOR;
+    document.getElementById("bgColor").value = CANVAS_BACKGROUND_COLOR;
 }

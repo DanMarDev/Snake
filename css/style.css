@@ -4,6 +4,7 @@ canvas {
     border: 5px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
 }
 
 #modalOverlay {
@@ -33,6 +34,32 @@ canvas {
     display: none;
 }
 
+.settings {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.settings button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.settings button:hover {
+    background-color: #0056b3;
+}
+
+.settings button#resumeButton.hidden {
+    display: none;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -46,4 +73,12 @@ h1 {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.instructions {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
 }
