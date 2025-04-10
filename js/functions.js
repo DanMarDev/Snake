@@ -37,6 +37,7 @@ function stopGame() {
 
 function reset() {
     gameRunning = false;
+    detectAndSetCustomSettings();
     initGame();
     hideResumeButton();
     hideStopButton();

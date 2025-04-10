@@ -1,14 +1,18 @@
 SNAKE_INIT_SIZE = 1;
 SNAKE_INIT_SPEED = 150;  // Speed in milliseconds
 SNAKE_INIT_DIRECTION = "right";
-SNAKE_INIT_COLOR = "green";
+SNAKE_INIT_COLOR = "#008000"; // Green color
 SNAKE_INIT_BODY = [{ x: 0, y: 0 }];
 FOOD = { x: 0, y: 0 };
 CANVAS_WIDTH = 600;
 CANVAS_HEIGHT = 600;
-CANVAS_BACKGROUND_COLOR = "lightblue";
+CANVAS_BACKGROUND_COLOR = "#ADD8E6"; // Light blue color
 gameRunning = true;
 
+/**
+ * Initializes the game when the page loads.
+ * Sets up the canvas, event listeners, and starts the game loop.
+ */
 (function() {
     // Initialize the game when the page loads
     window.onload = function() {
@@ -26,7 +30,11 @@ gameRunning = true;
 }
 )();
 
-// This function starts the game loop and initializes the game
+/**
+ * Main game loop that runs continuously while the game is active.
+ * It clears the canvas, draws the snake, places the food, and checks 
+ * for collisions.
+ */
 function gameLoop() {
     if (!gameRunning) return;
 
@@ -38,8 +46,8 @@ function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Fill the canvas with a light blue color
-    ctx.fillStyle = CANVAS_BACKGROUND_COLOR;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = CANVAS_BACKGROUND_COLOR;
 
     // Draw the snake on the canvas
     drawSnake(ctx, SNAKE_INIT_BODY, SNAKE_INIT_COLOR);
@@ -60,13 +68,29 @@ function gameLoop() {
 
 }
 
-// This function determines if the snake is on the food
+/**
+ * 
+ * Determines if the snake's head is on the food.
+ * 
+ * @param {*} snakeBody - Array of snake body segments
+ * @param {*} foodPosition - Position of the food on the canvas
+ * @returns {boolean} - Returns true if the snake's head is on the food, 
+ * false otherwise.
+ * 
+ */
 function isOnFood(snakeBody, foodPosition) {
     const head = snakeBody[0];
     return head.x === foodPosition.x && head.y === foodPosition.y;
 }
 
-// This function grows the snake when it eats food
+/**
+ * 
+ * Displays the score on the screen, updating the score element, and 
+ * grows the snake by adding a new segment to its body.
+ * 
+ * @param {*} snakeBody - Array of snake body segments
+ * 
+ */
 function growSnake(snakeBody) {
     SNAKE_INIT_SIZE++;
     displayScore();
@@ -74,14 +98,26 @@ function growSnake(snakeBody) {
     snakeBody.push({ x: tail.x, y: tail.y });
 }
 
-// This function places a food item on the canvas intially and
-// generates a new food item when the snake eats it
+/**
+ * 
+ * Places the food on the canvas at the specified position.
+ * 
+ * @param {*} ctx - Canvas context
+ * @param {*} foodPosition - Position of the food on the canvas
+ * 
+ */
 function placeFood(ctx, foodPosition) {
     ctx.fillStyle = "red";
     ctx.fillRect(foodPosition.x, foodPosition.y, 20, 20);
+    ctx.fillStyle = CANVAS_BACKGROUND_COLOR;
 }
 
-// This function generates a random position for the food
+/**
+ * Generates a random position for the food on the canvas.
+ * The position is aligned to a grid of 20x20 pixels.
+ * 
+ * @returns {object} - An object containing the x and y coordinates of the food.
+ */
 function generateFoodPosition() {
     const x = Math.floor(Math.random() * (CANVAS_WIDTH / 20)) * 20;
     const y = Math.floor(Math.random() * (CANVAS_HEIGHT / 20)) * 20;
@@ -89,10 +125,14 @@ function generateFoodPosition() {
 }
 
 
-// This function checks for collisions with the walls or itself
-// and returns true if a collision occurs.
-// It also checks if the snake is on the food and grows the snake if it is.
-// It returns false if no collision occurs.
+/**
+ * 
+ * Checks for collisions with walls, itself, and food.
+ * 
+ * @param {*} snakeBody - Array of snake body segments
+ * @param {*} ctx - Canvas context
+ * @returns {boolean} - Returns true if a collision is detected, false otherwise.
+ */
 function checkCollision(snakeBody, ctx) {
     const head = snakeBody[0];
     // Check for collision with walls
@@ -115,7 +155,13 @@ function checkCollision(snakeBody, ctx) {
     return false;
 }
 
-// This function handles keyboard input for controlling the snake
+/**
+ * 
+ * Handles key press events for controlling the snake's direction.
+ * 
+ * @param {*} event - The key press event object
+ * 
+ */
 function handleKeyPress(event) {
     const key = event.key.toLowerCase();
 
@@ -134,11 +180,18 @@ function handleKeyPress(event) {
     }
 }
 
-// This function moves the snake in the specified direction
+/**
+ * 
+ * Moves the snake in the specified direction.
+ * 
+ * @param {*} snakeBody - Array of snake body segments
+ * @param {*} direction - Direction to move the snake (up, down, left, right)
+ */
 function moveSnake(snakeBody, direction) {
     const head = { ...snakeBody[0] };
 
-    // Prevent the snake from moving in the opposite direction if its length is more than 1
+    // Prevent the snake from moving in the opposite direction if its 
+    // length is more than 1
     if (snakeBody.length > 1) {
         const neck = snakeBody[1];
         if (direction === "up" && head.y - 20 === neck.y) {
@@ -172,23 +225,33 @@ function moveSnake(snakeBody, direction) {
     snakeBody.pop();
 }
 
-// This function initializes the snake game with default values
+/**
+ *
+ * Initializes the game by setting up the canvas, snake, and food.
+ * 
+ * @returns {void}
+ */
 function initGame() {
 
-    initalizeDefaultSettings
-
+    // Check if custom settings are detected and set them
+    // If not, initialize default settings
     if (detectAndSetCustomSettings()) {
         SNAKE_INIT_SPEED = parseInt(document.getElementById("speed").value);
         SNAKE_INIT_COLOR = document.getElementById("color").value;
         CANVAS_BACKGROUND_COLOR = document.getElementById("bgColor").value;
+    } else {
+        initalizeDefaultSettings();
     }
 
+    // Canvas setup
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
     canvas.width = CANVAS_WIDTH;
     canvas.height = CANVAS_HEIGHT;
+    ctx.fillStyle = CANVAS_BACKGROUND_COLOR;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Snake and food setup
     SNAKE_INIT_SIZE = 1;
     SNAKE_INIT_DIRECTION = "right";
     SNAKE_INIT_BODY = [{ x: 0, y: 0 }];
@@ -199,14 +262,29 @@ function initGame() {
     displayScore();
 }
 
-// This function draws the snake on the canvas
+/**
+ * 
+ * Draws the snake on the canvas.
+ * 
+ * @param {*} ctx - Canvas context
+ * @param {*} snakeBody - Array of snake body segments
+ * @param {*} snakeColor - Color of the snake
+ */
 function drawSnake(ctx, snakeBody, snakeColor) {
     ctx.fillStyle = snakeColor;
     for (let i = 0; i < snakeBody.length; i++) {
         ctx.fillRect(snakeBody[i].x, snakeBody[i].y, 20, 20);
     }
+    ctx.fillStyle = CANVAS_BACKGROUND_COLOR; // Reset fill style to background color
 }
 
+
+/**
+ * 
+ * Detects and sets custom settings for the snake game.
+ * 
+ * @returns {boolean} - Returns true if custom settings are detected, false otherwise.
+ */
 function detectAndSetCustomSettings() {
     custom = false;
     let customSpeed = document.getElementById("speed").value;
@@ -216,18 +294,27 @@ function detectAndSetCustomSettings() {
     if (customSpeed !== SNAKE_INIT_SPEED) {
         SNAKE_INIT_SPEED = parseInt(customSpeed);
         custom = true;
+        document.getElementById("speed").value = SNAKE_INIT_SPEED;
     }
     if (customColor !== SNAKE_INIT_COLOR) {
         SNAKE_INIT_COLOR = customColor;
         custom = true;
+        document.getElementById("color").value = SNAKE_INIT_COLOR;
     }
     if (customBgColor !== CANVAS_BACKGROUND_COLOR) {
         CANVAS_BACKGROUND_COLOR = customBgColor;
         custom = true;
+        document.getElementById("bgColor").value = CANVAS_BACKGROUND_COLOR;
     }
     return custom;
 }
 
+/**
+ * 
+ * Initializes default settings for the snake game.
+ * 
+ * @param {string} message - The message to display in the alert.
+ */
 function initalizeDefaultSettings() {
     document.getElementById("speed").value = SNAKE_INIT_SPEED;
     document.getElementById("color").value = SNAKE_INIT_COLOR;
