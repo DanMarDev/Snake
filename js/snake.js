@@ -37,8 +37,6 @@ gameRunning = true;
  */
 function gameLoop() {
     if (!gameRunning) return;
-
-    
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -52,7 +50,7 @@ function gameLoop() {
     // Draw the snake on the canvas
     drawSnake(ctx, SNAKE_INIT_BODY, SNAKE_INIT_COLOR);
 
-    // Place the food on the canvas
+    // Draw the food on the canvas
     placeFood(ctx, FOOD);
 
     // Move the snake in the specified direction
@@ -60,12 +58,12 @@ function gameLoop() {
 
     // Check for collisions with walls or itself
     if(checkCollision(SNAKE_INIT_BODY, ctx)) {
-        showAlert("Game Over!"); // Show game over alert
-        // alert("Game Over!"); // Show game over alert
+        showAlert("Game Over!");
     }
 
-    setTimeout(gameLoop, SNAKE_INIT_SPEED); // Control the speed of the game
-
+    // Set the speed of the game loop
+    // The game loop will run every SNAKE_INIT_SPEED milliseconds
+    setTimeout(gameLoop, SNAKE_INIT_SPEED);
 }
 
 /**

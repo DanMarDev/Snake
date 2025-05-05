@@ -29,8 +29,6 @@ function resumeGame() {
 
 function stopGame() {
     gameRunning = false;
-    document.getElementById("resumeButton").classList.remove("hidden");
-    document.getElementById("startButton").classList.add("hidden");
     showResumeButton();
     hideStopButton();
 }

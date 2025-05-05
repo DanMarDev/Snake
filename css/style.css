@@ -23,16 +23,14 @@ canvas {
     align-items: center;
 }
 
-.submenu h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #1e90ff; /* DodgerBlue */
-    text-decoration: underline;
-}
-
-.submenu h2:hover {
-    color: #ff6347; /* Tomato */
+#alertButton {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 #modalOverlay {
@@ -46,16 +44,19 @@ canvas {
 }
 
 #customAlert {
-    position: absolute;
-    display: block; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
     background-color: #ffcccc; 
     border: 1px solid red; 
     border-radius: 5px; 
     padding: 10px; 
     color: red; 
     font-weight: bold; 
-    font-size: 16px; 
-    margin: 10px 0; 
+    font-size: 16px;
+    z-index: 1001; /* Ensure it appears above other elements */
 }
 
 #customAlert.hidden, #modalOverlay.hidden {
@@ -80,12 +81,25 @@ canvas {
     cursor: pointer;
 }
 
-.settings button:hover {
-    background-color: #0056b3;
-}
-
 .settings button#resumeButton.hidden {
     display: none;
+}
+
+button, a {
+    transition: transform 0.2s ease-in-out;
+}
+
+button:hover, a:hover {
+    transform: scale(1.15);
+}
+
+
+
+.submenu a {
+    text-decoration: none;
+    color: #1e90ff; /* DodgerBlue */
+    font-size: 18px;
+    font-weight: bold;
 }
 
 body {
@@ -99,10 +113,11 @@ body {
 h1 {
     text-align: center;
     margin-top: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .instructions {
+    margin-top: 20px;
     text-align: center;
 }
 
