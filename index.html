@@ -8,67 +8,77 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
-    <script src="js/snake.js"></script>
-    <script src="js/functions.js"></script>
-    <script src="js/api.js"></script>
+    <script defer src="js/snake.js"></script>
+    <script defer src="js/functions.js"></script>
+    <script defer src="js/api.js"></script>
 </head>
 <body>
     <header>
-        <h1>Snake Game</h1>
-        <nav class ="submenu">
-            
-        </nav>
+        <h1>Snake</h1>
     </header>
+    <button id="logoutBtn" class="hidden">Logout</button>
     <main>
-        <section class="instructions">
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button id="loginBtn">Login</button>
-            <button id="registerBtn">Register</button>
-            <span id ="authMsg"></span>
-        </section>
-        <section class ="settings">
-            <button type="button" id="leaderboardBtn" class="submenu-link">Leaderboards</button>
-            <button type="button" id="pastScoresBtn" class="submenu-link">Past Scores</button>
-        </section>
-        <section id="pastScoresList" class="instructions hidden"></section>
-        <section id="leaderboardList" class="instructions hidden"></section>
-        <section class="instructions">
-            <p>Use the arrow keys to control the snake.</p>
-            <p>Eat the food to grow the snake.</p>
-            <p>Don't run into the walls or yourself!</p>
-        </section>
-        <section class="settings">
-            <button id="startButton" onclick="startGame()">Start</button>
-            <button id="stopButton" class="hidden" onclick="stopGame()">Stop</button>
-            <button id="resumeButton" class="hidden" onclick="resumeGame()">Resume</button>
-            <button id="resetButton" onclick="reset()">Reset</button>
-        </section>
-        <section class="instructions">
-            <div id="score"></div>
-        </section>
-        <section class="canvas-container">
-            <canvas id="gameCanvas" width="600" height="600"></canvas>
-        </section>
-        <section class="settings">
-            <label for="speed">Speed:</label>
-            <input type="range" id="speed" min="100" max="300" value="150" step="1">
-            <label for="color">Snake Color:</label>
-            <input type="color" id="color" value="#008000">
-            <label for="bgColor">Background Color:</label>
-            <input type="color" id="bgColor" value="#ADD8E6">
-        </section>
-        <section class="instructions">
-            <p>If you change any settings, reset to see changes.</p>
-            <p>Use the sliders to adjust the speed of the snake.</p>
-            <p>Click on the color boxes to change the snake and background colors.</p>
-            <p>Click "Start" to begin the game.</p>
-        </section>
-    </main>
-    <div id="modalOverlay" class="hidden">
-        <div id="customAlert" class="hidden">
-            <span id="alert"></span>
-            <button id="alertButton" onclick="hideAlert()">OK</button>
+        <div id="authModal" class="hidden">
+            <form id="authForm">
+                <h2 id="authTitle">Login</h2>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" id="authSubmit">Submit</button>
+                <button type="button" id="switchAuth">Switch to Register</button>
+                <span id="authMsg" class="hidden"></span>
+            </form>
+        </div>#co
+        <div id="gameUI">
+            <section class ="settings">
+                <button type="button" id="leaderboardBtn" class="submenu-link">Leaderboards</button>
+                <button type="button" id="pastScoresBtn" class="submenu-link">Past Scores</button>
+            </section>
+            <ul id="pastScoresList" class="instructions hidden"></ul>
+            <ul id="leaderboardList" class="instructions hidden"></ul>
+            <section class="instructions">
+                <p>Use the arrow keys to control the snake.</p>
+                <p>Eat the food to grow the snake.</p>
+                <p>Don't run into the walls or yourself!</p>
+            </section>
+            <section class="settings">
+                <button id="startButton" onclick="startGame()">Start</button>
+                <button id="stopButton" class="hidden" onclick="stopGame()">Stop</button>
+                <button id="resumeButton" class="hidden" onclick="resumeGame()">Resume</button>
+                <button id="resetButton" onclick="reset()">Reset</button>
+            </section>
+            <section class="instructions">
+                <div id="score"></div>
+            </section>
+            <section class="canvas-container">
+                <canvas id="gameCanvas" width="600" height="600"></canvas>
+            </section>
+            <section class="settings">
+                <label for="speed">Speed:</label>
+                <input type="range" id="speed" min="5" max="30" value="10" step="1">
+                <label for="color">Snake Color:</label>
+                <input type="color" id="color" value="#008000">
+                <label for="bgColor">Background Color:</label>
+                <input type="color" id="bgColor" value="#ADD8E6">
+            </section>
+            <section class="instructions">
+                <p>If you change any settings, reset to see changes.</p>
+                <p>Use the sliders to adjust the speed of the snake.</p>
+                <p>Click on the color boxes to change the snake and background colors.</p>
+                <p>Click "Start" to begin the game.</p>
+            </section>
+        </main>
+        <div id="modalOverlay" class="hidden">
+            <div id="customAlert" class="hidden">
+                <span id="alert"></span>
+                <button id="alertButton" onclick="hideAlert()">OK</button>
+            </div>
         </div>
     </div>
+
+
+<footer>
+    <a href="https://github.com/DanMarDev/Snake">Source Code</a>
+</footer>
+
 </body>
+</html>

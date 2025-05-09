@@ -66,19 +66,54 @@ canvas {
 .settings {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 20px;
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 .settings button {
-    padding: 10px 20px;
+    padding: 10px 10px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.settings button:hover {
+    background-color: #0056b3;
+}
+.settings button#startButton {
+    background-color: #28a745; /* Bootstrap success color */
+}
+.settings button#startButton:hover {
+    background-color: #218838;
+}
+
+.settings button#stopButton {
+    background-color: #dc3545; /* Bootstrap danger color */
+}
+.settings button#stopButton:hover {
+    background-color: #c82333;
+}
+.settings button#pauseButton {
+    background-color: #ffc107; /* Bootstrap warning color */
+}
+.settings button#pauseButton:hover {
+    background-color: #e0a800;
+}
+.settings button#resumeButton {
+    background-color: #17a2b8; /* Bootstrap info color */
+}
+.settings button#resumeButton:hover {
+    background-color: #138496;
+}
+.settings button#resetButton {
+    background-color: #6c757d; /* Bootstrap secondary color */
+}
+.settings button#resetButton:hover {
+    background-color: #5a6268;
 }
 
 .settings button#resumeButton.hidden {
@@ -108,12 +143,155 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
 }
     
 h1 {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+li:hover {
+    background-color: #f1f1f1;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+footer a {
+    display: inline-block;
+    transition: transform 0.2s ease-in-out;
+}
+
+footer a:hover {
+    transform: translateY(-5px);
+}
+
+header {
+    background-color: lightgreen; /* Bootstrap primary color */
+    padding: 10px 20px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+}
+
+/* AUTH MODAL STYLES */
+#authModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    z-index: 1002;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#authModal:not(.hidden) {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#authForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#authTitle {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #007bff;
+}
+
+#authForm input {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.2s ease;
+}
+
+#authForm input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+#authSubmit,
+#switchAuth {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#authSubmit {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#authSubmit:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+#switchAuth {
+    background-color: transparent;
+    color: #007bff;
+}
+
+#switchAuth:hover {
+    color: #0056b3;
+    transform: translateY(-2px);
+}
+
+#authMsg {
+    display: block;
+    font-size: 0.9rem;
+    color: #e74c3c;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+#logoutBtn {
+    background-color: #dc3545; /* Bootstrap danger color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#logoutBtn:hover {
+    background-color: #c82333;
 }
 
 .instructions {

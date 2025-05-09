@@ -1,0 +1,16 @@
+# Node modules
+/server/node_modules
+
+# Env files
+server/.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+*.log
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/

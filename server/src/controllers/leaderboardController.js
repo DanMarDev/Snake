@@ -14,7 +14,7 @@ exports.getLeaderboard = async (req, res) => {
             .find()
             .sort({ score: -1 })
             .limit(10)
-            .populate('email');
+            .populate('userId', 'email');
         res.json(top);
     } catch (err) {
         console.error(err.message);

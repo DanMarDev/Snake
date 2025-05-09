@@ -1,3 +1,18 @@
-# Snake Game
+```bash
 
-Welcome to the **Snake Game** project! This is a simple implementation of the classic Snake game using HTML, CSS, and JavaScript. The game is designed to run in the browser and provides a fun and interactive experience.
+npm run dev
+
+docker run -d \
+  --name snake-mongo \
+  -p 27017:27017 \
+  -v ~/docker/mongo-data:/data/db \
+  mongo:latest
+
+docker exec -it snake-mongo bash
+mongosh
+show dbs
+use snake-mongo
+show collections
+db.users....
+
+```

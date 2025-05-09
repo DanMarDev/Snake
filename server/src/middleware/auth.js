@@ -23,7 +23,11 @@ module.exports = async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = await User.findById(decoded.id).select('-password');
+        const userId = decoded.user && decoded.user.id;
+        if (!userId) {
+            return res.status(401).json({ message: 'Token is not valid' });
+        }
+        req.user = await User.findById(userId).select('-password');
         if (!req.user) throw new Error();
         next();
     } catch (err) {

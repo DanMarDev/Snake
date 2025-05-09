@@ -63,7 +63,8 @@ function gameLoop() {
 
     // Set the speed of the game loop
     // The game loop will run every SNAKE_INIT_SPEED milliseconds
-    setTimeout(gameLoop, SNAKE_INIT_SPEED);
+    const delay = 1000 / SNAKE_INIT_SPEED;
+    setTimeout(gameLoop, delay);
 }
 
 /**
