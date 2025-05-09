@@ -10,16 +10,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
     <script src="js/snake.js"></script>
     <script src="js/functions.js"></script>
+    <script src="js/api.js"></script>
 </head>
 <body>
     <header>
         <h1>Snake Game</h1>
         <nav class ="submenu">
-            <a href="#">Leaderboards</a>
-            <a href="#">Past Scores</a>
+            
         </nav>
     </header>
     <main>
+        <section class="instructions">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button id="loginBtn">Login</button>
+            <button id="registerBtn">Register</button>
+            <span id ="authMsg"></span>
+        </section>
+        <section class ="settings">
+            <button type="button" id="leaderboardBtn" class="submenu-link">Leaderboards</button>
+            <button type="button" id="pastScoresBtn" class="submenu-link">Past Scores</button>
+        </section>
+        <section id="pastScoresList" class="instructions hidden"></section>
+        <section id="leaderboardList" class="instructions hidden"></section>
         <section class="instructions">
             <p>Use the arrow keys to control the snake.</p>
             <p>Eat the food to grow the snake.</p>

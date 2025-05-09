@@ -2,6 +2,10 @@ function showAlert(message) {
     document.getElementById("alert").innerText = message;
     gameRunning = false;
     displayModal();
+    // send final score if logged in
+    if (localStorage.getItem("token")) {
+        addScore(SNAKE_INIT_SIZE);
+    }
 }
 
 function hideAlert() {
@@ -86,3 +90,62 @@ function hideModal() {
     document.getElementById("modalOverlay").classList.add("hidden");
     document.getElementById('customAlert').classList.add('hidden');
 }
+
+// Auth buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const registerBtn = document.getElementById('registerBtn');
+    const loginBtn    = document.getElementById('loginBtn');
+    const pastBtn     = document.getElementById('pastScoresBtn');
+    const leadBtn     = document.getElementById('leaderboardBtn');
+  
+    registerBtn?.addEventListener('click', async () => {
+      const res = await registerUser(
+        document.getElementById('email').value,
+        document.getElementById('password').value
+      );
+      if (res.token) {
+        localStorage.setItem('token', res.token);
+        document.getElementById('authMsg').innerText = 'Registration successful!';
+      } else {
+        document.getElementById('authMsg').innerText = res.message;
+      }
+    });
+  
+    loginBtn?.addEventListener('click', async () => {
+      const res = await loginUser(
+        document.getElementById('email').value,
+        document.getElementById('password').value
+      );
+      if (res.token) {
+        localStorage.setItem('token', res.token);
+        document.getElementById('authMsg').innerText = 'Login successful!';
+      } else {
+        document.getElementById('authMsg').innerText = res.message;
+      }
+    });
+  
+    pastBtn?.addEventListener('click', async () => {
+      const scores = await getUserScores();
+      const list   = document.getElementById('pastScoresList');
+      list.innerHTML = '';
+      scores.forEach(s => {
+        const li = document.createElement('li');
+        li.innerText = `Score: ${s.score}, ${new Date(s.createdAt).toLocaleString()}`;
+        list.appendChild(li);
+      });
+      list.classList.remove('hidden');
+    });
+  
+    leadBtn?.addEventListener('click', async () => {
+      const board = await getLeaderboard();
+      const list  = document.getElementById('leaderboardList');
+      list.innerHTML = '';
+      board.forEach(e => {
+        const li = document.createElement('li');
+        li.innerText = `User: ${e.userId}, Score: ${e.score}`;
+        list.appendChild(li);
+      });
+      list.classList.remove('hidden');
+    });
+  });
+    

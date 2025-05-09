@@ -1,0 +1,23 @@
+/**
+ * @file db.js
+ * @description This file contains the database connection logic for the application.
+ * It uses Mongoose to connect to a MongoDB database.
+ * It exports a function that connects to the database and handles errors.
+ * @requires mongoose
+ * @exports connectDB
+ */
+
+const mongoose = require('mongoose');
+
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+        });
+        console.log('MongoDB connected');
+    } catch (error) {
+        console.error('MongoDB connection error:', error);
+        process.exit(1);
+    }
+};
+
+module.exports = connectDB;
