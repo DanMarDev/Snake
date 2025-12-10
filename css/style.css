@@ -24,7 +24,7 @@ canvas {
 }
 
 #alertButton {
-    background-color: #007bff; /* Bootstrap primary color */
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -85,32 +85,32 @@ canvas {
     background-color: #0056b3;
 }
 .settings button#startButton {
-    background-color: #28a745; /* Bootstrap success color */
+    background-color: #28a745; 
 }
 .settings button#startButton:hover {
     background-color: #218838;
 }
 
 .settings button#stopButton {
-    background-color: #dc3545; /* Bootstrap danger color */
+    background-color: #dc3545; 
 }
 .settings button#stopButton:hover {
     background-color: #c82333;
 }
 .settings button#pauseButton {
-    background-color: #ffc107; /* Bootstrap warning color */
+    background-color: #ffc107;
 }
 .settings button#pauseButton:hover {
     background-color: #e0a800;
 }
 .settings button#resumeButton {
-    background-color: #17a2b8; /* Bootstrap info color */
+    background-color: #17a2b8;
 }
 .settings button#resumeButton:hover {
     background-color: #138496;
 }
 .settings button#resetButton {
-    background-color: #6c757d; /* Bootstrap secondary color */
+    background-color: #6c757d;
 }
 .settings button#resetButton:hover {
     background-color: #5a6268;
@@ -132,7 +132,7 @@ button:hover, a:hover {
 
 .submenu a {
     text-decoration: none;
-    color: #1e90ff; /* DodgerBlue */
+    color: #1e90ff;
     font-size: 18px;
     font-weight: bold;
 }
@@ -186,7 +186,7 @@ footer a:hover {
 }
 
 header {
-    background-color: lightgreen; /* Bootstrap primary color */
+    background-color: lightgreen;
     padding: 10px 20px;
     text-align: center;
     width: 100%;
@@ -282,7 +282,7 @@ header {
 }
 
 #logoutBtn {
-    background-color: #dc3545; /* Bootstrap danger color */
+    background-color: #dc3545;
     color: white;
     border: none;
     border-radius: 5px;
