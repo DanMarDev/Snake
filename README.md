@@ -136,17 +136,3 @@ GET /api/leaderboard
 ```
 
 Response: array of top 10 score documents populated with user email.
-
-### Notes & tips
-
-- The backend uses JWTs (1h expiry) and a middleware to protect `/api/scores` routes.
-- If you don't want Docker, run a local MongoDB and point `MONGO_URI` at it.
-- Consider adding a `.env.example` with the required variables to make setup easier.
-
-### Next improvements (optional)
-
-- Add small `.env.example` file.
-- Add a lightweight static server to serve `index.html` (so CORS and relative paths behave consistently).
-- Add tests for controllers/endpoints.
-
-If you'd like, I can create a `.env.example` and a short script to serve the frontend next.
