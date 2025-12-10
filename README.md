@@ -1,3 +1,5 @@
+## Get started quickly
+
 ```bash
 
 npm run dev
@@ -42,25 +44,6 @@ npm install
 # create a .env with at least MONGO_URI and JWT_SECRET (see below)
 npm run dev
 ```
-
-3. Open the client: open `index.html` in your browser (or serve it with a static server).
-
-## Environment variables
-
-- MONGO_URI (e.g. mongodb://localhost:27017/snake)
-- JWT_SECRET
-- PORT (optional, defaults to 4000)
-
-## Main API routes
-
-- `POST /api/auth` - authentication
-- `POST /api/scores` - submit score
-- `GET /api/leaderboard` - fetch leaderboard
-
----
-Very short — see the `server/` folder for server code and `index.html` + `js/` for the frontend.
-
-## Expanded README
 
 ### What this repo contains
 
